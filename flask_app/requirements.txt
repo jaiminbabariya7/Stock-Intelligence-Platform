@@ -1,0 +1,4 @@
+flask
+google-cloud-bigquery
+gunicorn
+db-dtypes

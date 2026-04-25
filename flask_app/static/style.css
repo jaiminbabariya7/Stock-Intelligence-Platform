@@ -1,0 +1,52 @@
+body {
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+input {
+    padding: 10px;
+    width: 250px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+.helper {
+    margin-top: 30px;
+    padding: 15px;
+    background: #1e293b;
+    display: inline-block;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.helper h3 {
+    margin-bottom: 10px;
+}
+
+.helper ul {
+    list-style: none;   /* removes dots */
+    padding: 0;
+    margin: 0;
+}
+
+.helper li {
+    padding: 4px 0;
+    color: #cbd5e1;
+    text-align: center;
+}

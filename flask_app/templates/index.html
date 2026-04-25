@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Intelligence</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>Stock Prediction Search</h1>
+
+<div class="container">
+
+    <input id="symbol" placeholder="Enter symbol (AAPL, TSLA)" />
+    <button onclick="searchStock()">Search</button>
+
+    <!-- NEW: helper section -->
+    <div class="helper">
+        <h3>Supported Symbols</h3>
+        <ul>
+            <li>AAPL → Apple</li>
+            <li>TSLA → Tesla</li>
+            <li>MSFT → Microsoft</li>
+            <li>GOOGL → Google</li>
+            <li>AMZN → Amazon</li>
+        </ul>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function searchStock() {
+    let symbol = document.getElementById("symbol").value;
+
+    fetch(`/search/${symbol}`)
+        .then(res => res.json())
+        .then(data => {
+
+            if (data.error) {
+                document.getElementById("result").innerHTML = data.error;
+                return;
+            }
+
+            document.getElementById("result").innerHTML = `
+                <h2>${data.symbol}</h2>
+                <p>Predicted Price: ${data.predicted_price}</p>
+                <p>Time: ${data.prediction_time}</p>
+            `;
+        });
+}
+</script>
+
+</body>
+</html>
