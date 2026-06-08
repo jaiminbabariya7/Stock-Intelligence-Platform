@@ -1,2 +1,3 @@
-google-cloud-pubsub
-alpaca-py
+alpaca-py>=0.13.0
+google-cloud-pubsub>=2.18
+python-dotenv>=1.0
