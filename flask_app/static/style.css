@@ -1,52 +1,103 @@
-body {
-    font-family: Arial;
-    background: #0f172a;
-    color: white;
-    text-align: center;
+/* Stock Intelligence Platform — Dashboard Styles
+   Theme: Dark (Catppuccin Mocha-inspired) */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #1e1e2e;
+  --surface:  #181825;
+  --overlay:  #313244;
+  --text:     #cdd6f4;
+  --subtext:  #a6adc8;
+  --blue:     #4f8ef7;
+  --green:    #a6e3a1;
+  --red:      #f38ba8;
+  --yellow:   #f9e2af;
+  --orange:   #f7a44f;
+  --border:   #45475a;
+  --radius:   10px;
 }
 
-.container {
-    margin-top: 50px;
-}
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; min-height: 100vh; }
 
-input {
-    padding: 10px;
-    width: 250px;
-    font-size: 16px;
-}
+/* ── App layout ─────────────────────────────────────────────── */
+.app { max-width: 1400px; margin: 0 auto; padding: 0 20px 40px; }
 
-button {
-    padding: 10px 15px;
-    margin-left: 10px;
-    cursor: pointer;
+/* ── Header ──────────────────────────────────────────────────── */
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px;
 }
+.header-left { display: flex; align-items: center; gap: 12px; }
+.logo { font-size: 1.3rem; font-weight: 700; color: var(--blue); letter-spacing: -0.5px; }
+.badge {
+  background: var(--green); color: #1e1e2e; font-size: 0.65rem;
+  font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: 1px;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+.clock { font-size: 0.85rem; color: var(--subtext); font-family: monospace; }
+.powered { font-size: 0.75rem; color: var(--subtext); }
+.header-right { display: flex; align-items: center; gap: 20px; }
 
-#result {
-    margin-top: 30px;
-    font-size: 18px;
+/* ── Symbol bar ──────────────────────────────────────────────── */
+.symbol-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 24px;
 }
+.sym-btn {
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--subtext); padding: 7px 18px; border-radius: 20px;
+  cursor: pointer; font-size: 0.85rem; font-weight: 600;
+  transition: all .15s ease;
+}
+.sym-btn:hover { border-color: var(--blue); color: var(--blue); }
+.sym-btn.active { background: var(--blue); border-color: var(--blue); color: #1e1e2e; }
 
-.helper {
-    margin-top: 30px;
-    padding: 15px;
-    background: #1e293b;
-    display: inline-block;
-    border-radius: 8px;
-    text-align: center;
+/* ── KPI cards ───────────────────────────────────────────────── */
+.kpi-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  margin-bottom: 24px;
 }
+@media(max-width:900px){ .kpi-grid{ grid-template-columns: repeat(2,1fr); } }
+.kpi-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+}
+.kpi-label { font-size: 0.75rem; color: var(--subtext); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+.kpi-value { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+.kpi-sub   { font-size: 0.8rem; color: var(--subtext); }
 
-.helper h3 {
-    margin-bottom: 10px;
+/* ── Charts ──────────────────────────────────────────────────── */
+.charts-grid {
+  display: grid; grid-template-columns: 2fr 1fr; gap: 16px;
+  margin-bottom: 24px;
 }
+@media(max-width:900px){ .charts-grid{ grid-template-columns: 1fr; } }
+.chart-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+  height: 280px; position: relative;
+}
+.chart-title { font-size: 0.8rem; color: var(--subtext); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 12px; }
+canvas { width: 100% !important; height: calc(100% - 30px) !important; }
 
-.helper ul {
-    list-style: none;   /* removes dots */
-    padding: 0;
-    margin: 0;
+/* ── Table ───────────────────────────────────────────────────── */
+.table-section {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px; margin-bottom: 24px;
 }
+.section-title { font-size: 0.8rem; color: var(--subtext); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 14px; }
+.pred-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.pred-table th { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); color: var(--subtext); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; }
+.pred-table td { padding: 10px 12px; border-bottom: 1px solid var(--overlay); }
+.pred-table tr:last-child td { border-bottom: none; }
+.pred-table tr:hover td { background: var(--overlay); }
+.loading { color: var(--subtext); text-align: center; padding: 20px !important; }
 
-.helper li {
-    padding: 4px 0;
-    color: #cbd5e1;
-    text-align: center;
-}
+/* ── Colours ─────────────────────────────────────────────────── */
+.up   { color: var(--green); }
+.down { color: var(--red);   }
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.footer { text-align: center; color: var(--subtext); font-size: 0.75rem; padding-top: 16px; border-top: 1px solid var(--border); }
